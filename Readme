@@ -1,0 +1,224 @@
+## CS611- Assignment-3
+## Legends: Heros and Monsters
+-----------------------------------------------------------------------------
+Pranay Narne
+pnarne@bu.edu
+U28162272
+
+## Files
+-----------------------------------------------------------------------------
+Armor.java              -       This class represents Hero's Armor. It extends Item
+Battle.java             -       This class represents Battle. It is created when player steps on common space and rolls an odd score. It has all the actions from start to finish of a battle
+Board.java              -       This class represents Board class. It is an abstract class which can be extended to build any boardgame
+Cell.java               -       This class represents a cell in Board. It is an abstract class which can be extended to build any boardgame.
+CommonSpace.java        -       This class represents common space in this game. It extends Cell class and reachable interface. Action method in this function starts a battle
+Constants.java          -       This class stores all the constants used in this project
+Dice.java               -       Dice class, does every action a die can do and save the latest roll. Users can enter no.of dies they want to play with. (default:2). Second constructor is used to design custom die, user can input required numbers and text to create their own die. Functions: roll(), hasDoubles()
+Dragon.java             -       This class represents Dragon monster. It extends Monster
+Exoskeleton.java        -       This class represents Exoskeleton monster. It extends Monster
+FileParser.java         -       This class is used to parse txt files to hashmaps which are later converted to objects using helper classes.
+FireSpell.java          -       This class represents Hero's Fire spell. It extends Spell
+Hero.java               -       This class represents Hero character. It extends piece(this class can be extended to chess/tictactoe and all other board games). This class has all the attributes a hero would have. It has level-up function to level up hero
+HeroCollection.java     -       This class is primarily is used to convert hashmaps from fileparser to character objects. It has useful functions like printcollection to print character systematically
+IceSpell.java           -       This class represents Hero's Ice spell. It extends spell
+InaccessibleCell.java   -       This class represents Inaccessible space in this game. It extends Cell class.
+Inventory.java          -       This class represents Hero's Inventory. It stores hero's magic items.
+Item.java               -       This class represents magical items in this game. It is super class for all the magic elements
+ItemCollection.java     -       This class is primarily is used to convert hashmaps from fileparser to character objects. It has useful functions like printcollection to print character systematically
+LegendsBoard.java       -       This class represents the board used in this game. It extends Board class. It has all the methods used by a board, starting form initialise to endgame
+LegendsMonstersAndHeros.java -  This class represents this game. It initialises the whole game
+LightningSpell.java     -       This class represents Hero's Lightning spell. It extends spell
+Main.java               -       Main launcher class.
+Market.java             -       This class represents Market in this world. It has all actions such as buy(), sell()
+MarketSpace.java        -       This class represents Market space in this game. It extends Cell class and reachable interface. Action method in this function opens market
+Menu.java               -       This class has printer and scanner helper methods. Also has few menus.
+Monster.java            -       This class represents Monsters in this game. It extends Piece class and Cloneable interface.
+MonsterCollection.java  -       This class is primarily is used to convert hashmaps from fileparser to character objects. It has useful functions like printcollection to print character systematically
+Movement.java           -       This class represents Movement in this game. It has functions to move left, right up, down.
+Paladin                 -       This class represents Paladin Hero. It extends Hero class
+Piece                   -       This class represents a piece in board game. It can be reused in any boardgame
+Player                  -       This class represents Player in this game. It has all the feayures required to represent a player.
+Potion                  -       This class represents Hero's Potion. It extends Item
+Reachable               -       This interface represents reachable cells. Common and marketplace cells implement it
+Sorcerer                -       This class represents Sorcerer Hero. It extends Hero class
+Spell                   -       This class represents Hero's Magic Spells. It extends Item
+Spirit                  -       This class represents Spirit monster. It extends Monster
+Warrior                 -       This class represents Warrior Hero. It extends Hero class
+Weapon                  -       This class represents Hero's weapon. It extends Item
+
+
+## How to Compile and Run
+----------------------------------------------------------------------------------------------------------
+> Extract and open command prompt in "Legends- Monsters and Heros" Folder. Then run the below commands
+> javac -d out src/*.java
+> java -cp out Main
+
+
+## Input/Output Example
+----------------------------------------------------------------------------------------------------------
+#Scenario 0: Character selection:
+    Enter player name (default: Legend):
+    Enter the size of your team(1-3): 3
+
+    Select the type of hero you want to fight with
+    <1> Warrior: favored on strength and agility
+    <2> Sorcerers: favored on dexterity and agility
+    <3> Paladins: favored on strength and dexterity
+    Your choice: 3
+
+    Selection  Name                 HP   Mana  Strength  Agility  Dexterity  Gold  Experience
+    <1>        Parzival             100  300   750       650      700        2500  7
+    <2>        Sehanine Moonbow     100  300   750       700      700        2500  7
+    <3>        Skoraeus Stonebones  100  250   650       600      350        2500  4
+    <4>        Garl Glittergold     100  100   600       500      400        2500  5
+    <5>        Amaryllis Astra      100  500   500       500      500        2500  5
+    <6>        Caliber Heist        100  400   400       400      400        2500  8
+
+    Your choice: 5
+
+    Select the type of hero you want to fight with
+    <1> Warrior: favored on strength and agility
+    <2> Sorcerers: favored on dexterity and agility
+    <3> Paladins: favored on strength and dexterity
+    Your choice: 2
+
+    Selection  Name                 HP   Mana  Strength  Agility  Dexterity  Gold  Experience
+    <1>        Rillifane Rallathil  100  1300  750       450      500        2500  9
+    <2>        Segojan Earthcaller  100  900   800       500      650        2500  5
+    <3>        Reign Havoc          100  800   800       800      800        2500  8
+    <4>        Reverie Ashels       100  900   800       700      400        2500  7
+    <5>        Kalabar              100  800   850       400      600        2500  6
+    <6>        Skye Soar            100  1000  700       400      500        2500  5
+
+    Your choice: 1
+
+    Select the type of hero you want to fight with
+    <1> Warrior: favored on strength and agility
+    <2> Sorcerers: favored on dexterity and agility
+    <3> Paladins: favored on strength and dexterity
+    Your choice: 1
+
+    Selection  Name               HP   Mana  Strength  Agility  Dexterity  Gold  Experience
+    <1>        Gaerdal Ironhand   100  100   700       500      600        1354  7
+    <2>        Sehanine Monnbow   100  600   700       800      500        2500  8
+    <3>        Muamman Duathall   100  300   900       500      750        2546  6
+    <4>        Flandal Steelskin  100  200   750       650      700        2500  7
+    <5>        Undefeated Yoj     100  400   800       400      700        2500  7
+    <6>        Eunoia Cyn         100  400   700       800      600        2500  6
+
+    Your choice: 6
+
+    Your Heros are:
+    Name                 HP   Mana  Strength  Agility  Dexterity  Gold  Experience
+    Amaryllis Astra      100  500   500       500      500        2500  5
+    Rillifane Rallathil  100  1300  750       450      500        2500  9
+    Eunoia Cyn           100  400   700       800      600        2500  6
+
+    Proceed?[Y/N]: y
+    <FYI: Player is in the right bottom cell>
+
+#Scenario 1: Market:
+    Welcome to the Market! What do you wish to do:
+    <1> Buy
+    <2> Sell
+    <0> Leave market
+    Your choice: 1
+
+    Select a hero that wants to buy equipment:
+    <1> Amaryllis Astra  (Balance: 2500 )
+    <2> Rillifane Rallathil  (Balance: 2500 )
+    <3> Eunoia Cyn  (Balance: 2500 )
+    <0> Leave Market
+    Your choice: 1
+    Current Balance: 2500
+
+    Select the type of Item you wish to buy:
+    <1> Weapon
+    <2> Armor
+    <3> Potion
+    <4> Spell
+    <0> go back
+    Your choice: 1
+
+    Selection  Name     Type    Cost  Level  Damage  Required Hands
+    <1>        Sword    Weapon  500   1      800     1
+    <2>        Bow      Weapon  300   2      500     2
+    <3>        Scythe   Weapon  1000  6      1100    2
+    <4>        Axe      Weapon  550   5      850     1
+    <5>        TSwords  Weapon  1400  8      1600    2
+    <6>        Dagger   Weapon  200   1      250     1
+    <0> go back
+
+    Your choice: 2
+    Purchase successful! Amaryllis Astra now has Bow!
+    Current Balance: 2200
+    Do you want to Equip this weapon?[Y/N]: y
+    Weapon Equipped sucessfully
+    Amaryllis Astra is equipped with Bow
+
+
+    Welcome back to the Market! What do you wish to do:
+    <1> Buy
+    <2> Sell
+    <0> Leave market
+    Your choice: 0
+
+#Scenario 2: Safe Cell:
+    You've entered common space, Roll the dice to continue.
+    <Press Enter to Roll the Dice>
+
+    Your Roll is :  ::
+
+    > It's even, so you're safe <Press enter to continue>
+
+
+#Scenario 3: Battle:
+    Battle Scenario:
+                        HEROS                HP                           MONSTERS                HP
+              Amaryllis Astra    ██████████ 100                             Casper    ██████████ 100
+          Rillifane Rallathil    ██████████ 100                             Blinky    ██████████ 100
+                   Eunoia Cyn    ██████████ 100                        BigBad-Wolf    ██████████ 100
+
+
+    Pick a hero to start the fight:
+    Selection  Name                 HP   Mana  Strength  Agility  Dexterity  Gold  Experience
+    <1>        Amaryllis Astra      100  500   500       500      500        2200  5
+    <2>        Rillifane Rallathil  100  1300  750       450      500        2500  9
+    <3>        Eunoia Cyn           100  400   700       800      600        2500  6
+
+    Your choice:  1
+
+    Select a move for Amaryllis Astra
+    <1> Attack
+    <2> Cast Spell
+    <3> Use Potion
+    <4> Equip items
+    <5> Show stats
+    Your choice: 1
+
+    Pick a monster you want to attack:
+    Selection  Name         HP   Type         Level  Damage  Defense  Dodge
+    <1>        Casper       100  Spirit       1      100     100      50
+    <2>        Blinky       100  Spirit       1      450     350      35
+    <3>        BigBad-Wolf  100  Exoskeleton  1      150     250      15
+
+    Your choice:  2
+    Hero Attack:
+    Amaryllis Astra attacked Blinky for 32 damage!
+    Monster Attack:
+    Casper attacked Amaryllis Astra for 5 damage!
+
+    Battle Scenario:
+                        HEROS                HP                           MONSTERS                HP
+              Amaryllis Astra     █████████░ 95                             Casper    ██████████ 100
+          Rillifane Rallathil    ██████████ 100                             Blinky     ██████░░░░ 68
+                   Eunoia Cyn    ██████████ 100                        BigBad-Wolf    ██████████ 100
+
+
+    Pick a hero to start the fight:
+    Selection  Name                 HP   Mana  Strength  Agility  Dexterity  Gold  Experience
+    <1>        Amaryllis Astra      95   500   500       500      500        2200  5
+    <2>        Rillifane Rallathil  100  1300  750       450      500        2500  9
+    <3>        Eunoia Cyn           100  400   700       800      600        2500  6
+
+    Your choice:
